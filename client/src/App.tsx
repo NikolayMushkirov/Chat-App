@@ -4,8 +4,6 @@ import { io, Socket } from "socket.io-client";
 import { HomePage } from "./pages/HomePage";
 import { ChatPage } from "./pages/ChatPage";
 
-import "./App.css";
-
 const socket: Socket = io("http://localhost:5000");
 
 function App() {
