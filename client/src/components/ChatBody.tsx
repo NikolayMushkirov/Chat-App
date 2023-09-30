@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { Messages } from "../types/types";
+import { MessagesType } from "../types/types";
 
 type Props = {
-  messages: Messages[];
+  messages: MessagesType[];
   typingStatus: string;
   lastMessageRef: React.MutableRefObject<HTMLParagraphElement | null>;
 };

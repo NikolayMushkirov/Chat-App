@@ -4,12 +4,12 @@ export type SocketType = {
   socket: Socket;
 };
 
-export type User = {
+export type UserType = {
   userName: string;
   socketID: string | number;
 };
 
-export type Messages = {
+export type MessagesType = {
   name: string;
   text: string;
   id: string | number;

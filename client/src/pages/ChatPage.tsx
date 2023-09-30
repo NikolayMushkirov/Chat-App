@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 import { SocketType } from "../types/types";
-import { Messages, User } from "../types/types";
+import { MessagesType, UserType } from "../types/types";
 
 import ChatSideBar from "../components/ChatSideBar";
 import ChatBody from "../components/ChatBody";
@@ -11,11 +11,11 @@ type Props = SocketType;
 
 const ChatPage = ({ socket }: Props) => {
   const [message, setMessage] = useState<string>("");
-  const [messages, setMessages] = useState<Messages[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  const [messages, setMessages] = useState<MessagesType[]>([]);
+  const [users, setUsers] = useState<UserType[]>([]);
   const [typingStatus, setTypingStatus] = useState("");
 
-  const handleTyping = () =>
+  const handleTypingStatus = () =>
     socket.emit("typing", `${localStorage.getItem("userName")} is typing`);
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,11 +34,13 @@ const ChatPage = ({ socket }: Props) => {
   const lastMessageRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    socket.on("messageResponse", (data) => setMessages([...messages, data]));
+    socket.on("messageResponse", (newMessage: MessagesType) => {
+      setMessages([...messages, newMessage]);
+    });
   }, [socket, messages]);
 
   useEffect(() => {
-    socket.on("typingResponse", (data) => setTypingStatus(data));
+    socket.on("typingResponse", (status: string) => setTypingStatus(status));
   }, [socket]);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ const ChatPage = ({ socket }: Props) => {
         <ChatFooter
           message={message}
           setMessage={setMessage}
-          handleTyping={handleTyping}
+          handleTypingStatus={handleTypingStatus}
           handleSendMessage={handleSendMessage}
         />
       </div>

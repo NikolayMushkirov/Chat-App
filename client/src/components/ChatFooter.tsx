@@ -2,14 +2,14 @@ type Props = {
   message: string;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
   handleSendMessage: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleTyping: () => void;
+  handleTypingStatus: () => void;
 };
 
 const ChatFooter = ({
   message,
   setMessage,
   handleSendMessage,
-  handleTyping,
+  handleTypingStatus,
 }: Props) => {
   return (
     <form
@@ -22,7 +22,7 @@ const ChatFooter = ({
         className="h-14 w-3/4 rounded pl-10 placeholder:text-black bg-white"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={handleTyping}
+        onKeyDown={handleTypingStatus}
       />
       <button className="h-8 w-32  bg-green-500 text-white rounded">
         SEND

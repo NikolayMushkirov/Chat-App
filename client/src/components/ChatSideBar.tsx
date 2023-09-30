@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
-import { SocketType, User } from "../types/types";
+import { SocketType, UserType } from "../types/types";
 
-type SetUsersType = React.Dispatch<React.SetStateAction<User[]>>;
+type SetUsersType = React.Dispatch<React.SetStateAction<UserType[]>>;
 
 type Props = {
-  users: User[];
+  users: UserType[];
   setUsers: SetUsersType;
 } & SocketType;
 
