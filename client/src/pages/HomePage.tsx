@@ -6,7 +6,6 @@ type Props = SocketType;
 
 const HomePage = ({ socket }: Props) => {
   const [userName, setUserName] = useState("");
-
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
